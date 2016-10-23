@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Assignment 3</title>
+    </head>
+    
+    <style>
+        #create {
+            position: fixed;
+            z-index: 1;
+            top: 0vh;
+            left: 0vw;
+        }
+        
+        #delete {
+            position: fixed;
+            z-index: 1;
+            top: 0vh;
+            right: 0vw;
+        }
+        
+        #txt {
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 60px;
+            height: auto;
+        }
+        
+        #img {
+            position: fixed;
+            z-index: 1;
+            top: 20px;
+            left: 60px;
+            height: auto;
+        } 
+        
+        #div {
+            position: fixed;
+            z-index: 1;
+            top: 40px;
+            left: 60px;
+            height: auto;
+        }
+        
+        #holder {
+            position: absolute;
+            top: 80px;
+            left: 10vw;
+            width: 80vw;
+            height: auto;
+            background-color: grey;
+        }
+        
+        .imageThumb {
+            position: relative;
+            left: 4vw;
+            top: 0vh;
+            bottom: 0vh;
+            border-radius: 50px;
+            width: 100px;
+            height: 100px;
+        }
+        
+        .white {
+            background-color: white;
+            height: 10vh;
+            width: 80vw;
+        }
+        
+        .txtClass {
+            left: 190px;
+            margin: 0 190px 0 0;
+            width: auto;
+            height: auto;
+            position: relative;
+            background-color: grey;
+        }
+        
+        #bottomBar {
+            width: 100vw;
+            height: 50px;
+            left: 50vw;
+            bottom: -101vh;
+            position: fixed;
+            transition: bottom 1s;
+        }
+    
+        #messageCreationTxt {
+            width: 60vw;
+            height: auto;
+            font-size: 20px;
+        }
+    </style>
+
+    <body>
+        <button id='create'>ADD</button>
+        
+        <button id='delete'>DELETE</button>
+        
+        <input type='text' placeholder='Copy link to image here' id='img'/>
+        
+        <input type='text' placeholder="Div" id='div'/>
+        
+        <input type='text' placeholder='Enter your text here' id='txt'/>
+     
+        <div id='holder'></div>
+        
+        <div id='bottomBar'>
+            <h3 id='messageCreationTxt'></h3>
+        </div>
+        
+        <script language='javascript' text='text/javascript'>
+            var createBut = document.getElementById('create');
+            var deleteBut = document.getElementById('delete');
+            
+            var imgInput = document.getElementById("img");
+            var divInput = document.getElementById("div");
+            var txtInput = document.getElementById("txt");
+            
+            var holderDiv = document.getElementById("holder");
+            
+            var txtTxt = document.getElementById("messageCreationTxt");
+            var bottomBarDiv = document.getElementById("bottomBar");
+            
+            var counter = 0;
+            
+            time = function() {
+                bottomBarDiv.style.bottom = '-101vh';
+            }
+            
+            createBut.onclick = function() {
+                var mainHolderDiv = document.createElement("div");
+                var txtHolderDiv = document.createElement("h3");
+                var imgHolderImg = document.createElement("img");
+                var divHolderDiv = document.createElement("div");
+                var whiteDiv = document.createElement("div");
+                var bottomDiv = document.createElement("div");
+                
+                holderDiv.appendChild(mainHolderDiv);
+                mainHolderDiv.appendChild(divHolderDiv);
+                mainHolderDiv.appendChild(txtHolderDiv);
+                mainHolderDiv.appendChild(imgHolderImg);
+                mainHolderDiv.appendChild(bottomDiv);
+                mainHolderDiv.appendChild(whiteDiv);
+                
+                imgHolderImg.src = imgInput.value;
+                imgHolderImg.className = 'imageThumb';
+                
+                txtHolderDiv.className = 'txtClass';
+                txtHolderDiv.style.top = '30px';
+                txtHolderDiv.innerHTML = txtInput.value;
+                
+                divHolderDiv.className = 'txtClass';
+                divHolderDiv.style.top = '100px';
+                divHolderDiv.innerHTML = divInput.value;
+                
+                bottomDiv.style.backgroundColor = 'grey';
+                bottomDiv.style.height = '10vh';
+                bottomDiv.style.width = 'auto';
+                
+                whiteDiv.className = 'white';
+                
+                txtTxt.innerHTML = 'Message Created';
+                bottomBarDiv.style.bottom = '0';
+                setTimeout(time, 2000);
+            }
+            
+            deleteBut.onclick = function() {
+                holderDiv.innerHTML = "";
+                txtTxt.innerHTML = 'Message Deleted';
+                bottomBarDiv.style.bottom = '0';
+                setTimeout(time, 2000);
+            }
+        </script>
+    </body>
+</html>
